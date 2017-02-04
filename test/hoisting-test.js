@@ -16,6 +16,9 @@ describe('hoisting', () => {
   jsdom({
     src: fs.readFileSync(path.resolve(__dirname, '..', 'hoisting.js'), 'utf-8')
   })
+function callMe() {
+  return "maybe"
+}
 
   describe('callMe', () => {
     it("returns the string 'maybe'", () => {
