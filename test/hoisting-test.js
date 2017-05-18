@@ -13,38 +13,38 @@ chai.use(spies)
 const expect = chai.expect
 
 describe('hoisting', () => {
-  jsdom({
-    src: fs.readFileSync(path.resolve(__dirname, '..', 'hoisting.js'), 'utf-8')
-  })
-
-  describe('callMe', () => {
-    it("returns the string 'maybe'", () => {
-      expect(callMe()).to.equal("maybe");
-    })
-  })
-
-  describe('loggers', () => {
-    beforeEach(() => {
-      chai.spy.on(console, 'log')
+    jsdom({
+        src: fs.readFileSync(path.resolve(__dirname, '..', 'hoisting.js'), 'utf-8')
     })
 
-    afterEach(() => {
-      console.log.reset()
+    describe('callMe', () => {
+        it("returns the string 'maybe'", () => {
+            expect(callMe()).to.equal("maybe");
+        })
     })
 
-    describe('crazy', () => {
-      it("prints 'hey!!!' to the console from the nested function", () => {
-        crazy()
+    describe('loggers', () => {
+        beforeEach(() => {
+            chai.spy.on(console, 'log')
+        })
 
-        expect(console.log).to.have.been.called.with("hey!!!")
-      })
-    })
+        afterEach(() => {
+            console.log.reset()
+        })
 
-    describe('sayMyName', () => {
-      it("prints 'Kristin' to the console from the nested function", () => {
-        sayMyName()
-        expect(console.log).to.have.been.called.with("Kristin")
-      })
+        describe('crazy', () => {
+            it("prints 'hey!!!' to the console from the nested function", () => {
+                crazy()
+
+                expect(console.log).to.have.been.called.with("hey!!!")
+            })
+        })
+
+        describe('sayMyName', () => {
+            it("prints 'Kristin' to the console from the nested function", () => {
+                sayMyName()
+                expect(console.log).to.have.been.called.with("Kristin")
+            })
+        })
     })
-  })
 })
