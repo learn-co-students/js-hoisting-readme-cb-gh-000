@@ -20,23 +20,28 @@ describe('hoisting', () => {
   describe('callMe', () => {
     it("returns the string 'maybe'", () => {
       expect(callMe()).to.equal("maybe");
+
+
     })
   })
 
   describe('loggers', () => {
     beforeEach(() => {
       chai.spy.on(console, 'log')
+      done()
+
     })
 
     afterEach(() => {
       console.log.reset()
+
     })
 
     describe('crazy', () => {
       it("prints 'hey!!!' to the console from the nested function", () => {
         crazy()
-
         expect(console.log).to.have.been.called.with("hey!!!")
+
       })
     })
 
